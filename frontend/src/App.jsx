@@ -16,26 +16,25 @@ function App() {
     const formData = new FormData();
     formData.append("file", file);
 
-  try {
-  setLoading(true);
+    try {
+      setLoading(true);
 
-  const response = await axios.post(
-    "https://ai-resume-analyzer-1-my8t.onrender.com/analyze",
-    formData
-  );
+      const response = await axios.post(
+        "https://ai-resume-analyzer-1-my8t.onrender.com/analyze",
+        formData
+      );
 
-  setResult(response.data);
-
-} catch (error) {
-  console.log(error);
-  alert("Something went wrong!");
-}
-
-setLoading(false);
+      setResult(response.data);
+    } catch (error) {
+      console.log(error);
+      alert("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="container">
-
       <h1>AI Resume Analyzer</h1>
 
       <p>Upload your resume and get AI analysis.</p>
@@ -52,7 +51,6 @@ setLoading(false);
 
       {result && (
         <div className="result">
-
           <h2>ATS Score</h2>
           <p>{result.analysis.ats_score}</p>
 
@@ -90,14 +88,10 @@ setLoading(false);
               <li key={index}>{item}</li>
             ))}
           </ul>
-
-
         </div>
       )}
-
     </div>
   );
-  }
-};
+}
 
 export default App;
