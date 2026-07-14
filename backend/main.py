@@ -10,17 +10,19 @@ load_dotenv()
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:5173",
+    "http://localhost:5175",
+    "https://ai-resume-analyzer-f21v.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-allow_origins=["*"],
-
 # Create Groq client
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
