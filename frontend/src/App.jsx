@@ -16,23 +16,22 @@ function App() {
     const formData = new FormData();
     formData.append("file", file);
 
-    try {
-      setLoading(true);
+  try {
+  setLoading(true);
 
-      const response = await axios.post(
-        "http://127.0.0.1:8000/analyze",
-        formData
-      );
+  const response = await axios.post(
+    "https://ai-resume-analyzer-1-my8t.onrender.com/analyze",
+    formData
+  );
 
-      setResult(response.data);
+  setResult(response.data);
 
-    } catch (error) {
-      console.log(error);
-      alert("Something went wrong!");
-    }
+} catch (error) {
+  console.log(error);
+  alert("Something went wrong!");
+}
 
-    setLoading(false);
-  };
+setLoading(false);
 
   return (
     <div className="container">
@@ -98,6 +97,7 @@ function App() {
 
     </div>
   );
-}
+  }
+};
 
 export default App;
